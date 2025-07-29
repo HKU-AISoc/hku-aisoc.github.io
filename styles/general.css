@@ -24,12 +24,11 @@ width: 20%;
 
 #titleContainer{
 width: 70%;
-margin-bottom: auto;
 place-items: center;
 }
 
 #socLogo{
-width: 100%;
+width: 6rem;
 padding: 5px;
 }
 
