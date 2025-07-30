@@ -46,7 +46,7 @@
   }
   
   .semester-header {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, hsl(200, 100%, 65%) 0%, hsl(200, 100%, 35%) 100%);
       color: white;
       padding: 15px 10px;
       text-align: center;
@@ -56,17 +56,15 @@
   }
   
   .semester-header.year2 {
-      background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+      background: linear-gradient(135deg, hsl(225, 100%, 65%) 0%, hsl(225, 100%, 35%) 100%);
   }
   
   .semester-header.year3 {
-      background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
-      color: #333;
+      background: linear-gradient(135deg, hsl(250, 100%, 65%) 0%, hsl(250, 100%, 35%) 100%);
   }
   
   .semester-header.year4 {
-      background: linear-gradient(135deg, #fd79a8 0%, #fdcb6e 100%);
-      color: #333;
+      background: linear-gradient(135deg, hsl(275, 100%, 65%) 0%, hsl(275, 100%, 35%) 100%);
   }
   
   .drop-zone {
@@ -108,17 +106,23 @@ text-align: center;
       transform: scale(1.05);
   }
   
-  .course-block.math {
-      background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  .course-block.freeelec {
+      background: linear-gradient(135deg, hsl(38, 100%, 40%) 0%, hsl(38, 100%, 60%) 100%);
   }
   
-  .course-block.stat {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  .course-block.aicore {
+      background: linear-gradient(135deg, hsl(120, 100%, 35%) 0%,hsl(120, 100%, 55%) 100%);
+      color:#333
   }
   
-  .course-block.advanced {
-      background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
-      color: #333;
+  .course-block.aiconc {
+      background: linear-gradient(135deg, hsl(120, 88%, 15%) 0%, hsl(120, 88%, 35%) 100%);
+      color: #fff;
+  }
+
+  .course-block.bascLangCC {
+      background: linear-gradient(135deg, hsl(307, 59%, 35%) 0%, hsl(307, 59%, 55%) 100%);
+      color: #fff;
   }
   
   .course-block.invalid {
@@ -312,7 +316,7 @@ text-align: center;
 
 <div class="content">
     <div class="planner-container">
-        <h1>University Course Selection Planner</h1>
+        <h1>Applied AI Course Selection Planner</h1>
         
         <div class="instructions">
             📚 Drag and drop courses between semesters to plan your degree. Courses start in the pool below - drag them up to schedule them!
@@ -336,73 +340,73 @@ text-align: center;
             
             <!-- Drop zones for each semester -->
             <div class="drop-zone" data-semester="y1s1">
-				<div class="course-block math" draggable="true" data-course="MATH1013">
+				<div class="course-block aicore" draggable="true" data-course="MATH1013">
                     MATH1013<br>Sem 1 & 2
                 </div>
-				<div class="course-block math" draggable="true" data-course="COMP1117">
+				<div class="course-block aicore" draggable="true" data-course="COMP1117">
 					COMP1117<br>Sem 1 & 2
 				</div>
-				<div class="course-block math" draggable="true" data-course="APAI1001">
+				<div class="course-block aicore" draggable="true" data-course="APAI1001">
                     APAI1001<br>Sem 1 
                 </div>
-				<div class="course-block stat" draggable="true" data-course="BASC9001">
+				<div class="course-block bascLangCC" draggable="true" data-course="BASC9001">
 					BASC9001<br>Sem 1
 				</div>
-				<div class="course-block math" draggable="true" data-course="CAES1000">
+				<div class="course-block bascLangCC" draggable="true" data-course="CAES1000">
                     CAES1000<br>Sem 1 & 2
                 </div>
 			</div>
             <div class="drop-zone" data-semester="y1s2">
-                <div class="course-block math" draggable="true" data-course="MATH2014">
+                <div class="course-block aicore" draggable="true" data-course="MATH2014">
                     MATH2014<br>Sem 1 & 2
                 </div>
-				<div class="course-block math" draggable="true" data-course="COMP2113">
+				<div class="course-block freeelec" draggable="true" data-course="COMP2113">
                     COMP2113<br>Sem 1 & 2
                 </div>
-				<div class="course-block math" draggable="true" data-course="COMP2120">
+				<div class="course-block aicore" draggable="true" data-course="COMP2120">
                     COMP2120<br>Sem 2 Only
                 </div>
-				<div class="course-block math" draggable="true" data-course="STAT1016">
+				<div class="course-block bascLangCC" draggable="true" data-course="STAT1016">
                     STAT1016<br>Sem 2 Only
                 </div>
-				<div class="course-block stat" draggable="true" data-course="STAT2601">
+				<div class="course-block aicore" draggable="true" data-course="STAT2601">
                     STAT2601<br>Sem 1 & 2
                 </div>
             </div>
             <div class="drop-zone" data-semester="y2s1">
-                <div class="course-block stat" draggable="true" data-course="STAT2602">
+                <div class="course-block aicore" draggable="true" data-course="STAT2602">
                     STAT2602<br>Sem 1 & 2
                 </div>
-				<div class="course-block stat" draggable="true" data-course="COMP2119">
+				<div class="course-block aicore" draggable="true" data-course="COMP2119">
                     COMP2119<br>Sem 1 & 2
                 </div>
-				<div class="course-block stat" draggable="true" data-course="DESN9002">
+				<div class="course-block bascLangCC" draggable="true" data-course="DESN9002">
                     DESN9002<br>Sem 1 Only
                 </div>
             </div>
             <div class="drop-zone" data-semester="y2s2">
-                <div class="course-block advanced" draggable="true" data-course="STAT3600">
+                <div class="course-block freeelec" draggable="true" data-course="STAT3600">
                     STAT3600<br>Sem 1 & 2
                 </div>
-				<div class="course-block advanced" draggable="true" data-course="CAES9821">
+				<div class="course-block bascLangCC" draggable="true" data-course="CAES9821">
                     CAES9821<br>Sem 1 & 2
                 </div>
 				
             </div>
             <div class="drop-zone" data-semester="y3s1">
-                <div class="course-block advanced" draggable="true" data-course="STAT3612">
+                <div class="course-block aicore" draggable="true" data-course="STAT3612">
                     STAT3612<br>Sem 1 Only
                 </div>
-				<div class="course-block advanced" draggable="true" data-course="MATH3904">
+				<div class="course-block aicore" draggable="true" data-course="MATH3904">
                     MATH3904<br>Sem 1 Only
                 </div>
-				<div class="course-block advanced" draggable="true" data-course="CSCI9001">
+				<div class="course-block bascLangCC" draggable="true" data-course="CSCI9001">
                     CSCI9001<br>Sem 1 & 2
                 </div>
 				
             </div>
             <div class="drop-zone" data-semester="y3s2">
-				<div class="course-block advanced" draggable="true" data-course="COMP3340">
+				<div class="course-block aicore" draggable="true" data-course="COMP3340">
                     COMP3340<br>Sem 2 Only
                 </div>
 			</div>
@@ -420,7 +424,7 @@ text-align: center;
             <div class="adder-form">
                 <div class="form-group">
                     <label for="courseCode">Course Code</label>
-                    <input type="text" id="courseCode" placeholder="e.g., MATH3001" style="text-transform: uppercase;">
+                    <input type="text" id="courseCode" placeholder="e.g., APAI3010" style="text-transform: uppercase;">
                 </div>
                 <div class="form-group">
                     <label>Available Semesters</label>
@@ -453,6 +457,72 @@ text-align: center;
     <script>
         let draggedElement = null;
         
+
+        const aiCoreCourse = [
+            'APAI1001',
+            'COMP1117',
+            'MATH1013',
+            'STAT2601',
+            'COMP2119',
+            'MATH2014',
+            'STAT2602',
+            'COMP2120',
+            'MATH3904',
+            'STAT3612',
+            'COMP3340',
+            'APAI3799',
+            'APAI4766',
+            'APAI4798'
+        ];
+        
+        const aiConc = [
+            'COMP3271',
+            'COMP3356',
+            'APAI3010',
+            'APAI4011',
+            'APAI4012',
+            'APAI4099',
+            'COMP3320',
+            'MATH3901',
+            'MATH3906',
+            'STAT3613',
+            'STAT4601',
+            'STAT3655',
+            'STAT4610',
+            'APAI3021',
+            'APAI4022',
+            'APAI4023',
+            'URBS1003',
+            'URBS1005',
+            'GEOG2090',
+            'GEOG3202',
+            'GEOG3420',
+            'PSYC1001',
+            'PSYC2007',
+            'PSYC2051',
+            'PSYC2066',
+            'PSYC2067',
+            'COMP3250',
+            'COMP3278',
+            'MATH3601',
+            'MATH3911',
+            'MATH3943',
+            'STAT3600',
+            'STAT3622',
+            'STAT4602',
+        ];
+
+        const bascLang = [
+            'BASC9001',
+            'DESN9002',
+            'STAT1016',
+            'CAES1000',
+            'CAES9821',
+            'CSCI9001',
+            'CUND9002',
+            'CUND9003',
+        ];
+
         // PREREQUISITE RULES - Easy to edit!
         // Format: 'COURSE_CODE': ['PREREQUISITE1', 'PREREQUISITE2', ...]
         const prerequisites = {
@@ -609,7 +679,7 @@ text-align: center;
                         // If prerequisite comes after or same semester as the course, that's invalid
                         if (prereqSemesterIndex >= courseSemesterIndex) {
                             isInvalid = true;
-                            violations.push(`${prereq} is a prerequisite of ${courseCode} and must be completed before ${getSemesterDisplayName(courseSemester)}.`);
+                            violations.push(`${prereq} is a prerequisite of ${courseCode}.`);
                         }
                     }
                 }
@@ -783,13 +853,20 @@ text-align: center;
             }
             
             // Determine course type for styling
-            let courseType = 'stat'; // default
-            if (courseCode.startsWith('MATH')) {
-                courseType = 'math';
-            } else if (courseCode.match(/^[A-Z]+[3-9]/)) {
-                courseType = 'advanced';
+            let courseType = 'freeelec'; // default
+
+            if (aiCoreCourse.includes(courseCode)) {
+                courseType = 'aicore';
+            }else if (aiConc.includes(courseCode)) {
+                courseType = 'aiconc';
+            }else if (bascLang.includes(courseCode)) {
+                courseType = 'bascLangCC';
+            }else if (courseCode.startsWith('CC')) {
+                courseType = 'bascLangCC';
             }
-            
+            // stat math advanced
+
+
             // Create the course block
             const courseBlock = document.createElement('div');
             courseBlock.className = `course-block ${courseType}`;
