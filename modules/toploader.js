@@ -20,7 +20,7 @@ function navBarLoad(){
                             <li class="menu-item has-dropdown" aria-haspopup="true">\ 
                                 <a href="#">Freshmen Guide</a>\ 
                                 <ul class="dropdown-menu">\ 
-                                <li class="submenu-item"><a href="./course">Couse Selection</a></li>\ 
+                                <li class="submenu-item"><a href="./courses.html">Couse Selection</a></li>\ 
                                 <li class="submenu-item"><a href="#12">Applied AI Syllabus</a></li>\ 
                                 <li class="submenu-item"><a href="./course helper.html">Couse Selection Tool </a></li>\ 
                                 </ul>\ 
@@ -28,7 +28,7 @@ function navBarLoad(){
                             <li class="menu-item has-dropdown" aria-haspopup="true">\ 
                                 <a href="#">AI Society</a>\ 
                                 <ul class="dropdown-menu">\ 
-                                <li class="submenu-item"><a href="#21">Who We Are</a></li>\ 
+                                <li class="submenu-item"><a href="./whoweare.html">Who We Are</a></li>\ 
                                 <li class="submenu-item"><a href="#22">Events</a></li>\ 
                                 <li class="submenu-item"><a href="#23">Submenu 2.3</a></li>\ 
                                 </ul>\ 
@@ -42,7 +42,7 @@ function navBarLoad(){
                                 </ul>\ 
                             </li>\ 
                             <li class="menu-item"><a href="#">FAQs</a></li>\ 
-                            <li class="menu-item"><a href="#">Contact</a></li>\ 
+                            <li class="menu-item"><a href="contact.html">Contact</a></li>\ 
                             </ul>\ 
                         </nav>`
 
