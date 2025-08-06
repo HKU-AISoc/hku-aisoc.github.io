@@ -1,35 +1,40 @@
+html {
+  height: 100%;
+}
+
 body {
-background-color: #000000;
-color: #FFFFFF;
-text-shadow: 1px 1px 1px #333333;
-font-family: Arial, Helvetica, sans-serif;
-font-size: 20px;
-margin: 0px;
+  background-color: #000000;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 1px #333333;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  margin: 0px;
+  min-height: 100%;
 }
 
-.container{
-background-color: #555555;
-width: 100%;
-margin: auto !important;
+.container {
+  background-color: #555555;
+  width: 100%;
+  margin: auto !important;
 }
 
-#title{
-  display:flex;
+#title {
+  display: flex;
   align-items: center;
 }
 
-#logoContainer{
-width: 20%;
+#logoContainer {
+  width: 20%;
 }
 
-#titleContainer{
-width: 70%;
-place-items: center;
+#titleContainer {
+  width: 70%;
+  place-items: center;
 }
 
-#socLogo{
-width: 6rem;
-padding: 5px;
+#socLogo {
+  width: 6rem;
+  padding: 5px;
 }
 
 .navbar {
@@ -53,8 +58,8 @@ padding: 5px;
 }
 
 /* Dropdown menu styling */
-ul{
-	padding: 0px;
+ul {
+  padding: 0px;
 }
 
 .has-dropdown:hover .dropdown-menu {
@@ -80,29 +85,32 @@ ul{
 
 .submenu-item a:hover {
   background-color: #BFBFBF;
-    color: #000000;
+  color: #000000;
 
 }
+
 .show {
   display: block;
 }
 
 
 a:link {
-color: #FFFFFF;
+  color: #FFFFFF;
 }
+
 a:visited {
-color: #FFFFFF;
+  color: #FFFFFF;
 }
+
 a:hover {
-background-color: #FFFFFF;
-color: #000000;
+  background-color: #FFFFFF;
+  color: #000000;
 }
+
 a:active {
-color: white;
+  color: white;
 }
 
-.content{
-	min-height: 960px;
+.content {
+  min-height: 960px;
 }
-

@@ -1,20 +1,21 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HKU AIS</title>
-<link rel="icon" type="image/x-icon" href="../images/AIS_logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HKU AIS</title>
+    <link rel="icon" type="image/x-icon" href="../images/AIS_logo.png">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<script src="../modules/toploader.js"></script>
+    <script src="../modules/toploader.js"></script>
 
-<script>
-</script>
+    <script>
+    </script>
 
 </head>
 <link rel="stylesheet" href="../styles/general.css">
@@ -23,440 +24,450 @@
 
 
 <style>
-  .planner-container {
-      background: #777777;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      text-shadow: none;
-  }
-  
-  h1 {
-      text-align: center;
-      color: #ffffff;
-      margin-bottom: 30px;
-  }
-  
-  .planner-grid {
-      display: grid;
-      grid-template-columns: repeat(8, 1fr);
-      gap: 10px;
-      margin-bottom: 20px;
-  }
-  
-  .semester-header {
-      background: linear-gradient(135deg, hsl(200, 100%, 65%) 0%, hsl(200, 100%, 35%) 100%);
-      color: white;
-      padding: 15px 10px;
-      text-align: center;
-      font-weight: bold;
-      border-radius: 8px;
-      font-size: 14px;
-  }
-  
-  .semester-header.year2 {
-      background: linear-gradient(135deg, hsl(225, 100%, 65%) 0%, hsl(225, 100%, 35%) 100%);
-  }
-  
-  .semester-header.year3 {
-      background: linear-gradient(135deg, hsl(250, 100%, 65%) 0%, hsl(250, 100%, 35%) 100%);
-  }
-  
-  .semester-header.year4 {
-      background: linear-gradient(135deg, hsl(275, 100%, 65%) 0%, hsl(275, 100%, 35%) 100%);
-  }
-  
-  .drop-zone {
-      min-height: 400px;
-      background-color: #dddddd;
-      border: 2px dashed #dee2e6;
-      border-radius: 8px;
-      padding: 10px;
-      transition: all 0.3s ease;
-  }
-  
-  .drop-zone.drag-over {
-      border-color: #007bff;
-      background-color: #e3f2fd;
-  }
-  
-  .course-block {
-      background: #28a745;
-      color: white;
-      padding: 12px;
-      margin: 8px 0;
-      border-radius: 8px;
-      cursor: move;
-      user-select: none;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      font-size: 12px;
-      font-weight: bold;
-text-align: center;
-  }
-  
-  .course-block:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  }
-  
-  .course-block.dragging {
-      opacity: 0.5;
-      transform: scale(1.05);
-  }
-  
-  .course-block.freeelec {
-      background: linear-gradient(135deg, hsl(38, 60%, 40%) 0%, hsl(38, 60%, 60%) 100%);
-      color:#fff
-  }
-  
-  .course-block.aicore {
-      background: linear-gradient(135deg, hsl(120, 60%, 35%) 0%,hsl(120, 60%, 55%) 100%);
-      color:#fff
-  }
-  
-  .course-block.aiconc {
-      background: linear-gradient(135deg, hsl(120, 88%, 15%) 0%, hsl(120, 88%, 35%) 100%);
-      color: #fff;
-  }
+    .planner-container {
+        background: #777777;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-shadow: none;
+    }
 
-  .course-block.bascLangCC {
-      background: linear-gradient(135deg, hsl(307, 59%, 35%) 0%, hsl(307, 59%, 55%) 100%);
-      color: #fff;
-  }
-  
-  .course-block.invalid {
-      background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%) !important;
-      color: white !important;
-      animation: pulse 2s infinite;
-  }
-  
-  .course-block.prerequisite-highlight {
-      background: linear-gradient(135deg, #3498db 0%, #2980b9 100%) !important;
-      color: white !important;
-      transform: scale(1.05);
-      box-shadow: 0 0 60px rgba(174, 0, 183, 0.75);
-  }
-  
-  @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
-      70% { box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
-  }
-  
-  .course-pool {
-      margin-top: 30px;
-      padding: 20px;
-      background: #f8f9fa;
-      border-radius: 8px;
-      border: 2px dashed #6c757d;
-  }
-  
-  .course-adder {
-      margin-top: 30px;
-      padding: 20px;
-      background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
-      border-radius: 8px;
-      border: 2px solid #2196f3;
-  }
-  
-  .course-adder h3 {
-      margin-top: 0;
-      color: #1976d2;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-  }
-  
-  .adder-form {
-      display: grid;
-      grid-template-columns: 2fr 2fr 1fr;
-      gap: 15px;
-      align-items: end;
-      margin-bottom: 15px;
-  }
-  
-  .form-group {
-      display: flex;
-      flex-direction: column;
-  }
-  
-  .form-group label {
-      font-weight: bold;
-      margin-bottom: 5px;
-      color: #555;
-      font-size: 12px;
-  }
-  
-  .form-group input {
-      padding: 10px;
-      border: 2px solid #ddd;
-      border-radius: 6px;
-      font-size: 14px;
-      transition: border-color 0.3s ease;
-  }
-  
-  .form-group input:focus {
-      outline: none;
-      border-color: #2196f3;
-  }
-  
-  .checkbox-group {
-      display: flex;
-      gap: 15px;
-      margin-top: 5px;
-  }
-  
-  .checkbox-item {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-  }
-  
-  .checkbox-item input[type="checkbox"] {
-      margin: 0;
-      width: 18px;
-      height: 18px;
-  }
-  
-  .add-btn {
-      background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      height: fit-content;
-  }
-  
-  .add-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
-  }
-  
-  .add-btn:active {
-      transform: translateY(0);
-  }
-  
-  .trash-area {
-      margin-top: 20px;
-      padding: 20px;
-      background: linear-gradient(135deg, #ffebee 0%, #fce4ec 100%);
-      border: 2px dashed #f44336;
-      border-radius: 8px;
-      text-align: center;
-      min-height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-  }
-  
-  .trash-area.drag-over {
-      background: linear-gradient(135deg, #ffcdd2 0%, #f8bbd9 100%);
-      border-color: #d32f2f;
-      transform: scale(1.02);
-  }
-  
-  .trash-content {
-      color: #d32f2f;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 16px;
-  }
-  
-  .instructions {
-      margin-bottom: 20px;
-      padding: 15px;
-      background: #e9ecef;
-      border-radius: 8px;
-      color: #495057;
-  }
-  
-  .invalid-notice {
-      margin-bottom: 15px;
-      padding: 10px;
-      background: #f8d7da;
-      border: 1px solid #f5c6cb;
-      border-radius: 8px;
-      color: #721c24;
-      display: none;
-  }
-  
-  .violation-details {
-      margin-top: 10px;
-      font-size: 14px;
-      line-height: 1.4;
-  }
-  
-  .violation-item {
-      margin: 5px 0;
-      padding: 5px 10px;
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 4px;
-  }
+    h1 {
+        text-align: center;
+        color: #ffffff;
+        margin-bottom: 30px;
+    }
+
+    .planner-grid {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .semester-header {
+        background: linear-gradient(135deg, hsl(200, 100%, 65%) 0%, hsl(200, 100%, 35%) 100%);
+        color: white;
+        padding: 15px 10px;
+        text-align: center;
+        font-weight: bold;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+
+    .semester-header.year2 {
+        background: linear-gradient(135deg, hsl(225, 100%, 65%) 0%, hsl(225, 100%, 35%) 100%);
+    }
+
+    .semester-header.year3 {
+        background: linear-gradient(135deg, hsl(250, 100%, 65%) 0%, hsl(250, 100%, 35%) 100%);
+    }
+
+    .semester-header.year4 {
+        background: linear-gradient(135deg, hsl(275, 100%, 65%) 0%, hsl(275, 100%, 35%) 100%);
+    }
+
+    .drop-zone {
+        min-height: 400px;
+        background-color: #dddddd;
+        border: 2px dashed #dee2e6;
+        border-radius: 8px;
+        padding: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .drop-zone.drag-over {
+        border-color: #007bff;
+        background-color: #e3f2fd;
+    }
+
+    .course-block {
+        background: #28a745;
+        color: white;
+        padding: 12px;
+        margin: 8px 0;
+        border-radius: 8px;
+        cursor: move;
+        user-select: none;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        font-size: 12px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .course-block:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .course-block.dragging {
+        opacity: 0.5;
+        transform: scale(1.05);
+    }
+
+    .course-block.freeelec {
+        background: linear-gradient(135deg, hsl(38, 60%, 40%) 0%, hsl(38, 60%, 60%) 100%);
+        color: #fff
+    }
+
+    .course-block.aicore {
+        background: linear-gradient(135deg, hsl(120, 60%, 35%) 0%, hsl(120, 60%, 55%) 100%);
+        color: #fff
+    }
+
+    .course-block.aiconc {
+        background: linear-gradient(135deg, hsl(120, 88%, 15%) 0%, hsl(120, 88%, 35%) 100%);
+        color: #fff;
+    }
+
+    .course-block.bascLangCC {
+        background: linear-gradient(135deg, hsl(307, 59%, 35%) 0%, hsl(307, 59%, 55%) 100%);
+        color: #fff;
+    }
+
+    .course-block.invalid {
+        background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%) !important;
+        color: white !important;
+        animation: pulse 2s infinite;
+    }
+
+    .course-block.prerequisite-highlight {
+        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%) !important;
+        color: white !important;
+        transform: scale(1.05);
+        box-shadow: 0 0 60px rgba(174, 0, 183, 0.75);
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
+        }
+
+        70% {
+            box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+        }
+
+        100% {
+            box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+        }
+    }
+
+    .course-pool {
+        margin-top: 30px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border: 2px dashed #6c757d;
+    }
+
+    .course-adder {
+        margin-top: 30px;
+        padding: 20px;
+        background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+        border-radius: 8px;
+        border: 2px solid #2196f3;
+    }
+
+    .course-adder h3 {
+        margin-top: 0;
+        color: #1976d2;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .adder-form {
+        display: grid;
+        grid-template-columns: 2fr 2fr 1fr;
+        gap: 15px;
+        align-items: end;
+        margin-bottom: 15px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #555;
+        font-size: 12px;
+    }
+
+    .form-group input {
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: #2196f3;
+    }
+
+    .checkbox-group {
+        display: flex;
+        gap: 15px;
+        margin-top: 5px;
+    }
+
+    .checkbox-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .checkbox-item input[type="checkbox"] {
+        margin: 0;
+        width: 18px;
+        height: 18px;
+    }
+
+    .add-btn {
+        background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        height: fit-content;
+    }
+
+    .add-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+    }
+
+    .add-btn:active {
+        transform: translateY(0);
+    }
+
+    .trash-area {
+        margin-top: 20px;
+        padding: 20px;
+        background: linear-gradient(135deg, #ffebee 0%, #fce4ec 100%);
+        border: 2px dashed #f44336;
+        border-radius: 8px;
+        text-align: center;
+        min-height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .trash-area.drag-over {
+        background: linear-gradient(135deg, #ffcdd2 0%, #f8bbd9 100%);
+        border-color: #d32f2f;
+        transform: scale(1.02);
+    }
+
+    .trash-content {
+        color: #d32f2f;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 16px;
+    }
+
+    .instructions {
+        margin-bottom: 20px;
+        padding: 15px;
+        background: #e9ecef;
+        border-radius: 8px;
+        color: #495057;
+    }
+
+    .invalid-notice {
+        margin-bottom: 15px;
+        padding: 10px;
+        background: #f8d7da;
+        border: 1px solid #f5c6cb;
+        border-radius: 8px;
+        color: #721c24;
+        display: none;
+    }
+
+    .violation-details {
+        margin-top: 10px;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .violation-item {
+        margin: 5px 0;
+        padding: 5px 10px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+    }
 </style>
 
 <body onload="loadModules()">
 
-<div class="container" >
+    <div class="container">
 
-<div id="title">
-  <!-- Go check toploader.js -->
-</div>
-
-<div class="navbar">
-  <!-- Go check toploader.js -->    
-</div>
-
-
-<div class="content">
-    <div class="planner-container">
-        <h1>Applied AI Course Selection Planner</h1>
-        
-        <div class="instructions">
-            📚 Drag and drop courses between semesters to plan your degree. Courses start in the pool below - drag them up to schedule them!
+        <div id="title">
+            <!-- Go check toploader.js -->
         </div>
-        
-        <div class="invalid-notice" id="invalidNotice">
-            ⚠️ <strong>Invalid Course Selection:</strong>
-            <div class="violation-details" id="violationDetails"></div>
+
+        <div class="navbar">
+            <!-- Go check toploader.js -->
         </div>
-        
-        <div class="planner-grid">
-            <!-- Headers -->
-            <div class="semester-header">Year 1 S1</div>
-            <div class="semester-header">Year 1 S2</div>
-            <div class="semester-header year2">Year 2 S1</div>
-            <div class="semester-header year2">Year 2 S2</div>
-            <div class="semester-header year3">Year 3 S1</div>
-            <div class="semester-header year3">Year 3 S2</div>
-            <div class="semester-header year4">Year 4 S1</div>
-            <div class="semester-header year4">Year 4 S2</div>
-            
-            <!-- Drop zones for each semester -->
-            <div class="drop-zone" data-semester="y1s1">
-				<div class="course-block aicore" draggable="true" data-course="MATH1013">
-                    MATH1013<br>Sem 1 & 2
+
+
+        <div class="content">
+            <div class="planner-container">
+                <h1>Applied AI Course Selection Planner</h1>
+
+                <div class="instructions">
+                    📚 Drag and drop courses between semesters to plan your degree. Courses start in the pool below -
+                    drag them up to schedule them!
                 </div>
-				<div class="course-block aicore" draggable="true" data-course="COMP1117">
-					COMP1117<br>Sem 1 & 2
-				</div>
-				<div class="course-block aicore" draggable="true" data-course="APAI1001">
-                    APAI1001<br>Sem 1 
+
+                <div class="invalid-notice" id="invalidNotice">
+                    ⚠️ <strong>Invalid Course Selection:</strong>
+                    <div class="violation-details" id="violationDetails"></div>
                 </div>
-				<div class="course-block bascLangCC" draggable="true" data-course="BASC9001">
-					BASC9001<br>Sem 1
-				</div>
-				<div class="course-block bascLangCC" draggable="true" data-course="CAES1000">
-                    CAES1000<br>Sem 1 & 2
-                </div>
-			</div>
-            <div class="drop-zone" data-semester="y1s2">
-                <div class="course-block aicore" draggable="true" data-course="MATH2014">
-                    MATH2014<br>Sem 1 & 2
-                </div>
-				<div class="course-block freeelec" draggable="true" data-course="COMP2113">
-                    COMP2113<br>Sem 1 & 2
-                </div>
-				<div class="course-block aicore" draggable="true" data-course="COMP2120">
-                    COMP2120<br>Sem 2 Only
-                </div>
-				<div class="course-block bascLangCC" draggable="true" data-course="STAT1016">
-                    STAT1016<br>Sem 2 Only
-                </div>
-				<div class="course-block aicore" draggable="true" data-course="STAT2601">
-                    STAT2601<br>Sem 1 & 2
-                </div>
-            </div>
-            <div class="drop-zone" data-semester="y2s1">
-                <div class="course-block aicore" draggable="true" data-course="STAT2602">
-                    STAT2602<br>Sem 1 & 2
-                </div>
-				<div class="course-block aicore" draggable="true" data-course="COMP2119">
-                    COMP2119<br>Sem 1 & 2
-                </div>
-				<div class="course-block bascLangCC" draggable="true" data-course="DESN9002">
-                    DESN9002<br>Sem 1 Only
-                </div>
-            </div>
-            <div class="drop-zone" data-semester="y2s2">
-                <div class="course-block freeelec" draggable="true" data-course="STAT3600">
-                    STAT3600<br>Sem 1 & 2
-                </div>
-				<div class="course-block bascLangCC" draggable="true" data-course="CAES9821">
-                    CAES9821<br>Sem 1 & 2
-                </div>
-				
-            </div>
-            <div class="drop-zone" data-semester="y3s1">
-                <div class="course-block aicore" draggable="true" data-course="STAT3612">
-                    STAT3612<br>Sem 1 Only
-                </div>
-				<div class="course-block aicore" draggable="true" data-course="MATH3904">
-                    MATH3904<br>Sem 1 Only
-                </div>
-				<div class="course-block bascLangCC" draggable="true" data-course="CSCI9001">
-                    CSCI9001<br>Sem 1 & 2
-                </div>
-				
-            </div>
-            <div class="drop-zone" data-semester="y3s2">
-				<div class="course-block aicore" draggable="true" data-course="COMP3340">
-                    COMP3340<br>Sem 2 Only
-                </div>
-			</div>
-				
-            <div class="drop-zone" data-semester="y4s1">
-				
-			</div>
-            <div class="drop-zone" data-semester="y4s2">
-				
-			</div>
-        </div>
-        
-        <div class="course-adder">
-            <h3>➕ Add New Course</h3>
-            <div class="adder-form">
-                <div class="form-group">
-                    <label for="courseCode">Course Code</label>
-                    <input type="text" id="courseCode" placeholder="e.g., APAI3010" style="text-transform: uppercase;">
-                </div>
-                <div class="form-group">
-                    <label>Available Semesters</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="sem1" value="s1">
-                            <label for="sem1">Semester 1</label>
+
+                <div class="planner-grid">
+                    <!-- Headers -->
+                    <div class="semester-header">Year 1 S1</div>
+                    <div class="semester-header">Year 1 S2</div>
+                    <div class="semester-header year2">Year 2 S1</div>
+                    <div class="semester-header year2">Year 2 S2</div>
+                    <div class="semester-header year3">Year 3 S1</div>
+                    <div class="semester-header year3">Year 3 S2</div>
+                    <div class="semester-header year4">Year 4 S1</div>
+                    <div class="semester-header year4">Year 4 S2</div>
+
+                    <!-- Drop zones for each semester -->
+                    <div class="drop-zone" data-semester="y1s1">
+                        <div class="course-block aicore" draggable="true" data-course="MATH1013">
+                            MATH1013<br>Sem 1 & 2
                         </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="sem2" value="s2">
-                            <label for="sem2">Semester 2</label>
+                        <div class="course-block aicore" draggable="true" data-course="COMP1117">
+                            COMP1117<br>Sem 1 & 2
+                        </div>
+                        <div class="course-block aicore" draggable="true" data-course="APAI1001">
+                            APAI1001<br>Sem 1
+                        </div>
+                        <div class="course-block bascLangCC" draggable="true" data-course="BASC9001">
+                            BASC9001<br>Sem 1
+                        </div>
+                        <div class="course-block bascLangCC" draggable="true" data-course="CAES1000">
+                            CAES1000<br>Sem 1 & 2
                         </div>
                     </div>
+                    <div class="drop-zone" data-semester="y1s2">
+                        <div class="course-block aicore" draggable="true" data-course="MATH2014">
+                            MATH2014<br>Sem 1 & 2
+                        </div>
+                        <div class="course-block freeelec" draggable="true" data-course="COMP2113">
+                            COMP2113<br>Sem 1 & 2
+                        </div>
+                        <div class="course-block aicore" draggable="true" data-course="COMP2120">
+                            COMP2120<br>Sem 2 Only
+                        </div>
+                        <div class="course-block bascLangCC" draggable="true" data-course="STAT1016">
+                            STAT1016<br>Sem 2 Only
+                        </div>
+                        <div class="course-block aicore" draggable="true" data-course="STAT2601">
+                            STAT2601<br>Sem 1 & 2
+                        </div>
+                    </div>
+                    <div class="drop-zone" data-semester="y2s1">
+                        <div class="course-block aicore" draggable="true" data-course="STAT2602">
+                            STAT2602<br>Sem 1 & 2
+                        </div>
+                        <div class="course-block aicore" draggable="true" data-course="COMP2119">
+                            COMP2119<br>Sem 1 & 2
+                        </div>
+                        <div class="course-block bascLangCC" draggable="true" data-course="DESN9002">
+                            DESN9002<br>Sem 1 Only
+                        </div>
+                    </div>
+                    <div class="drop-zone" data-semester="y2s2">
+                        <div class="course-block freeelec" draggable="true" data-course="STAT3600">
+                            STAT3600<br>Sem 1 & 2
+                        </div>
+                        <div class="course-block bascLangCC" draggable="true" data-course="CAES9821">
+                            CAES9821<br>Sem 1 & 2
+                        </div>
+
+                    </div>
+                    <div class="drop-zone" data-semester="y3s1">
+                        <div class="course-block aicore" draggable="true" data-course="STAT3612">
+                            STAT3612<br>Sem 1 Only
+                        </div>
+                        <div class="course-block aicore" draggable="true" data-course="MATH3904">
+                            MATH3904<br>Sem 1 Only
+                        </div>
+                        <div class="course-block bascLangCC" draggable="true" data-course="CSCI9001">
+                            CSCI9001<br>Sem 1 & 2
+                        </div>
+
+                    </div>
+                    <div class="drop-zone" data-semester="y3s2">
+                        <div class="course-block aicore" draggable="true" data-course="COMP3340">
+                            COMP3340<br>Sem 2 Only
+                        </div>
+                    </div>
+
+                    <div class="drop-zone" data-semester="y4s1">
+
+                    </div>
+                    <div class="drop-zone" data-semester="y4s2">
+
+                    </div>
                 </div>
-                <button class="add-btn" onclick="addNewCourse()">Add Course</button>
+
+                <div class="course-adder">
+                    <h3>➕ Add New Course</h3>
+                    <div class="adder-form">
+                        <div class="form-group">
+                            <label for="courseCode">Course Code</label>
+                            <input type="text" id="courseCode" placeholder="e.g., APAI3010"
+                                style="text-transform: uppercase;">
+                        </div>
+                        <div class="form-group">
+                            <label>Available Semesters</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="sem1" value="s1">
+                                    <label for="sem1">Semester 1</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="sem2" value="s2">
+                                    <label for="sem2">Semester 2</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="add-btn" onclick="addNewCourse()">Add Course</button>
+                    </div>
+                </div>
+
+                <div class="trash-area" id="trashArea">
+                    <div class="trash-content">
+                        🗑️ Drag courses here to delete them
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        <div class="trash-area" id="trashArea">
-            <div class="trash-content">
-                🗑️ Drag courses here to delete them
-            </div>
+
         </div>
     </div>
-
-</div>
-</div>
 
 
     <script>
         let draggedElement = null;
-        
+
 
         const aiCoreCourse = [
             'APAI1001',
@@ -474,7 +485,7 @@ text-align: center;
             'APAI4766',
             'APAI4798'
         ];
-        
+
         const aiConc = [
             'COMP3271',
             'COMP3356',
@@ -526,59 +537,59 @@ text-align: center;
         // PREREQUISITE RULES - Easy to edit!
         // Format: 'COURSE_CODE': ['PREREQUISITE1', 'PREREQUISITE2', ...]
         const prerequisites = {
-			'MATH2014': ['MATH1013'],  
-			'COMP2113': ['COMP1117'],  
-			'COMP2120': ['COMP1117'],        
-			'STAT2601': ['MATH2014'],  
-			'STAT2602': ['STAT2601'],  
-			'COMP2119': ['COMP2113'],  
-			'STAT3600': ['STAT2602'],  
-			'STAT3612': ['STAT2602'],        
-			'MATH3904': ['MATH2014'],        
-			'COMP3340': ['COMP2119','MATH2014'],         
-            
+            'MATH2014': ['MATH1013'],
+            'COMP2113': ['COMP1117'],
+            'COMP2120': ['COMP1117'],
+            'STAT2601': ['MATH2014'],
+            'STAT2602': ['STAT2601'],
+            'COMP2119': ['COMP2113'],
+            'STAT3600': ['STAT2602'],
+            'STAT3612': ['STAT2602'],
+            'MATH3904': ['MATH2014'],
+            'COMP3340': ['COMP2119', 'MATH2014'],
+
             // Add more prerequisite rules here as needed
         };
-        
+
         // SEMESTER AVAILABILITY RULES - Easy to edit!
         // Format: 'COURSE_CODE': ['s1', 's2'] or ['s1'] or ['s2']
         // 's1' = Semester 1, 's2' = Semester 2, both = available in both semesters
         const semesterAvailability = {
             'MATH1013': ['s1', 's2'],  // Available both semesters
-			'COMP1117': ['s1', 's2'],  // Available both semesters
-			'APAI1001': ['s1'],        // Only Semester 1
-			'BASC9001': ['s1'],        // Only Semester 1
-			'CAES1000': ['s1', 's2'],  // Available both semesters
-			'MATH2014': ['s1', 's2'],  // Available both semesters
-			'COMP2113': ['s1', 's2'],  // Available both semesters
-			'COMP2120': ['s2'],        // Only Semester 2
-			'STAT1016': ['s2'],        // Only Semester 2
-			'STAT2601': ['s1', 's2'],  // Available both semesters
-			'STAT2602': ['s1', 's2'],  // Available both semesters
-			'COMP2119': ['s1', 's2'],  // Available both semesters
-			'DESN9002': ['s1'],        // Only Semester 1
-			'STAT3600': ['s1', 's2'],  // Available both semesters
-			'CAES9821': ['s1', 's2'],  // Available both semesters
-			'STAT3612': ['s1'],        // Only Semester 1
-			'MATH3904': ['s1'],        // Only Semester 1
-			'CSCI9001': ['s1', 's2'],  // Available both semesters
-			'COMP3340': ['s2']         // Only Semester 2
+            'COMP1117': ['s1', 's2'],  // Available both semesters
+            'APAI1001': ['s1'],        // Only Semester 1
+            'BASC9001': ['s1'],        // Only Semester 1
+            'CAES1000': ['s1', 's2'],  // Available both semesters
+            'MATH2014': ['s1', 's2'],  // Available both semesters
+            'COMP2113': ['s1', 's2'],  // Available both semesters
+            'COMP2120': ['s2'],        // Only Semester 2
+            'STAT1016': ['s2'],        // Only Semester 2
+            'STAT2601': ['s1', 's2'],  // Available both semesters
+            'STAT2602': ['s1', 's2'],  // Available both semesters
+            'COMP2119': ['s1', 's2'],  // Available both semesters
+            'DESN9002': ['s1'],        // Only Semester 1
+            'STAT3600': ['s1', 's2'],  // Available both semesters
+            'CAES9821': ['s1', 's2'],  // Available both semesters
+            'STAT3612': ['s1'],        // Only Semester 1
+            'MATH3904': ['s1'],        // Only Semester 1
+            'CSCI9001': ['s1', 's2'],  // Available both semesters
+            'COMP3340': ['s2']         // Only Semester 2
             // Add more semester availability rules here as needed
         };
-        
+
         // Semester order for prerequisite checking
         const semesterOrder = [
             'y1s1', 'y1s2', 'y2s1', 'y2s2', 'y3s1', 'y3s2', 'y4s1', 'y4s2'
         ];
-        
+
         // Function to highlight prerequisites when dragging
         function highlightPrerequisites(courseCode) {
             // Clear existing highlights
             clearPrerequisiteHighlights();
-            
+
             const coursePrereqs = prerequisites[courseCode];
             if (!coursePrereqs || coursePrereqs.length === 0) return;
-            
+
             // Highlight each prerequisite
             coursePrereqs.forEach(prereq => {
                 const prereqBlock = document.querySelector(`[data-course="${prereq}"]`);
@@ -587,20 +598,20 @@ text-align: center;
                 }
             });
         }
-        
+
         // Function to clear prerequisite highlights
         function clearPrerequisiteHighlights() {
             document.querySelectorAll('.course-block').forEach(block => {
                 block.classList.remove('prerequisite-highlight');
             });
         }
-        
+
         function getSemesterType(semesterCode) {
             if (semesterCode === 'pool') return null;
             // Extract the semester number from codes like 'y1s1', 'y2s2', etc.
             return semesterCode.slice(-2); // Gets 's1' or 's2'
         }
-        
+
         function getSemesterDisplayName(semesterCode) {
             const semesterNames = {
                 'y1s1': 'Year 1 Semester 1',
@@ -614,32 +625,32 @@ text-align: center;
             };
             return semesterNames[semesterCode] || semesterCode;
         }
-        
+
         // Function to check prerequisites and semester availability
         function checkPrerequisites() {
             const invalidNotice = document.getElementById('invalidNotice');
             const violationDetails = document.getElementById('violationDetails');
             let violations = [];
-            
+
             // Reset all courses to valid state
             document.querySelectorAll('.course-block').forEach(course => {
                 course.classList.remove('invalid');
             });
-            
+
             // Check each course
             document.querySelectorAll('.course-block').forEach(courseBlock => {
                 const courseCode = courseBlock.dataset.course;
                 const coursePrereqs = prerequisites[courseCode];
                 const courseAvailability = semesterAvailability[courseCode];
-                
+
                 const courseParent = courseBlock.parentNode;
                 const courseSemester = courseParent.dataset.semester;
-                
+
                 // Skip courses in the pool
                 if (courseSemester === 'pool') return;
-                
+
                 let isInvalid = false;
-                
+
                 // Check semester availability
                 if (courseAvailability) {
                     const semesterType = getSemesterType(courseSemester);
@@ -649,33 +660,33 @@ text-align: center;
                         violations.push(`${courseCode} is only available in ${availableSems}, but is placed in ${getSemesterDisplayName(courseSemester)}.`);
                     }
                 }
-                
+
                 // Check prerequisites
                 if (coursePrereqs && coursePrereqs.length > 0) {
                     const courseSemesterIndex = semesterOrder.indexOf(courseSemester);
-                    
+
                     for (const prereq of coursePrereqs) {
                         const prereqBlock = document.querySelector(`[data-course="${prereq}"]`);
-                        
+
                         if (!prereqBlock) {
                             // Prerequisite not found in the planner
                             isInvalid = true;
                             violations.push(`${prereq} is a prerequisite of ${courseCode} but is not scheduled.`);
                             continue;
                         }
-                        
+
                         const prereqParent = prereqBlock.parentNode;
                         const prereqSemester = prereqParent.dataset.semester;
-                        
+
                         // If prerequisite is in pool, that's invalid
                         if (prereqSemester === 'pool') {
                             isInvalid = true;
                             violations.push(`${prereq} is a prerequisite of ${courseCode} but is not scheduled.`);
                             continue;
                         }
-                        
+
                         const prereqSemesterIndex = semesterOrder.indexOf(prereqSemester);
-                        
+
                         // If prerequisite comes after or same semester as the course, that's invalid
                         if (prereqSemesterIndex >= courseSemesterIndex) {
                             isInvalid = true;
@@ -683,16 +694,16 @@ text-align: center;
                         }
                     }
                 }
-                
+
                 if (isInvalid) {
                     courseBlock.classList.add('invalid');
                 }
             });
-            
+
             // Show/hide invalid notice with specific violations
             if (violations.length > 0) {
                 invalidNotice.style.display = 'block';
-                violationDetails.innerHTML = violations.map(violation => 
+                violationDetails.innerHTML = violations.map(violation =>
                     `<div class="violation-item">${violation}</div>`
                 ).join('');
             } else {
@@ -700,7 +711,7 @@ text-align: center;
                 violationDetails.innerHTML = '';
             }
         }
-        
+
         // Add event listeners to all course blocks
         function addDragListeners() {
             document.querySelectorAll('.course-block').forEach(block => {
@@ -708,7 +719,7 @@ text-align: center;
                 block.addEventListener('dragend', handleDragEnd);
             });
         }
-        
+
         // Add event listeners to all drop zones (including trash)
         document.querySelectorAll('.drop-zone').forEach(zone => {
             zone.addEventListener('dragover', handleDragOver);
@@ -716,65 +727,65 @@ text-align: center;
             zone.addEventListener('dragenter', handleDragEnter);
             zone.addEventListener('dragleave', handleDragLeave);
         });
-        
+
         // Add trash area event listeners
         const trashArea = document.getElementById('trashArea');
         trashArea.addEventListener('dragover', handleDragOver);
         trashArea.addEventListener('drop', handleTrashDrop);
         trashArea.addEventListener('dragenter', handleDragEnter);
         trashArea.addEventListener('dragleave', handleDragLeave);
-        
+
         function handleDragStart(e) {
             draggedElement = this;
             this.classList.add('dragging');
             e.dataTransfer.effectAllowed = 'move';
-            
+
             // Highlight prerequisites for the course being dragged
             const courseCode = this.dataset.course;
             highlightPrerequisites(courseCode);
         }
-        
+
         function handleDragEnd(e) {
             this.classList.remove('dragging');
             document.querySelectorAll('.drop-zone').forEach(zone => {
                 zone.classList.remove('drag-over');
             });
-            
+
             // Clear prerequisite highlights when drag ends
             clearPrerequisiteHighlights();
         }
-        
+
         function handleDragOver(e) {
             e.preventDefault();
             e.dataTransfer.dropEffect = 'move';
         }
-        
+
         function handleDragEnter(e) {
             e.preventDefault();
             this.classList.add('drag-over');
         }
-        
+
         function handleDragLeave(e) {
             // Only remove drag-over if we're actually leaving the drop zone
             if (!this.contains(e.relatedTarget)) {
                 this.classList.remove('drag-over');
             }
         }
-        
+
         function handleDrop(e) {
             e.preventDefault();
             this.classList.remove('drag-over');
-            
+
             if (draggedElement && this !== draggedElement.parentNode) {
                 // Remove from current location
                 draggedElement.parentNode.removeChild(draggedElement);
-                
+
                 // Add to new location
                 this.appendChild(draggedElement);
-                
+
                 // Check prerequisites after moving
                 checkPrerequisites();
-                
+
                 // Add a little bounce effect
                 draggedElement.style.transform = 'scale(1.1)';
                 setTimeout(() => {
@@ -782,66 +793,66 @@ text-align: center;
                 }, 200);
             }
         }
-        
+
         function handleTrashDrop(e) {
             e.preventDefault();
             this.classList.remove('drag-over');
-            
+
             if (draggedElement) {
                 // Add deletion animation
                 draggedElement.style.transition = 'all 0.3s ease';
                 draggedElement.style.transform = 'scale(0)';
                 draggedElement.style.opacity = '0';
-                
+
                 setTimeout(() => {
                     // Remove the course from DOM
                     draggedElement.parentNode.removeChild(draggedElement);
-                    
+
                     // Remove from semester availability rules if it was added dynamically
                     const courseCode = draggedElement.dataset.course;
                     if (semesterAvailability[courseCode]) {
                         delete semesterAvailability[courseCode];
                     }
-                    
+
                     // Recheck prerequisites after deletion
                     checkPrerequisites();
                 }, 300);
             }
         }
-        
+
         // Function to add new course
         function addNewCourse() {
             const courseCodeInput = document.getElementById('courseCode');
             const sem1Checkbox = document.getElementById('sem1');
             const sem2Checkbox = document.getElementById('sem2');
-            
+
             const courseCode = courseCodeInput.value.trim().toUpperCase();
-            
+
             // Validation
             if (!courseCode) {
                 alert('Please enter a course code');
                 return;
             }
-            
+
             if (!sem1Checkbox.checked && !sem2Checkbox.checked) {
                 alert('Please select at least one semester');
                 return;
             }
-            
+
             // Check if course already exists
             if (document.querySelector(`[data-course="${courseCode}"]`)) {
                 alert('Course already exists in the planner');
                 return;
             }
-            
+
             // Determine semester availability
             const availability = [];
             if (sem1Checkbox.checked) availability.push('s1');
             if (sem2Checkbox.checked) availability.push('s2');
-            
+
             // Add to semester availability rules
             semesterAvailability[courseCode] = availability;
-            
+
             // Create semester text for display
             let semesterText;
             if (availability.length === 2) {
@@ -851,17 +862,17 @@ text-align: center;
             } else {
                 semesterText = 'Sem 2 Only';
             }
-            
+
             // Determine course type for styling
             let courseType = 'freeelec'; // default
 
             if (aiCoreCourse.includes(courseCode)) {
                 courseType = 'aicore';
-            }else if (aiConc.includes(courseCode)) {
+            } else if (aiConc.includes(courseCode)) {
                 courseType = 'aiconc';
-            }else if (bascLang.includes(courseCode)) {
+            } else if (bascLang.includes(courseCode)) {
                 courseType = 'bascLangCC';
-            }else if (courseCode.startsWith('CC')) {
+            } else if (courseCode.startsWith('CC')) {
                 courseType = 'bascLangCC';
             }
             // stat math advanced
@@ -873,15 +884,15 @@ text-align: center;
             courseBlock.draggable = true;
             courseBlock.dataset.course = courseCode;
             courseBlock.innerHTML = `${courseCode}<br>${semesterText}`;
-            
+
             // Add drag listeners to the new course
             courseBlock.addEventListener('dragstart', handleDragStart);
             courseBlock.addEventListener('dragend', handleDragEnd);
-            
+
             // Add to the first available drop zone (Y1S1)
             const firstDropZone = document.querySelector('[data-semester="y1s1"]');
             firstDropZone.appendChild(courseBlock);
-            
+
             // Add creation animation
             courseBlock.style.opacity = '0';
             courseBlock.style.transform = 'scale(0.5)';
@@ -890,31 +901,31 @@ text-align: center;
                 courseBlock.style.opacity = '1';
                 courseBlock.style.transform = 'scale(1)';
             }, 50);
-            
+
             // Clear the form
             courseCodeInput.value = '';
             sem1Checkbox.checked = false;
             sem2Checkbox.checked = false;
-            
+
             // Check prerequisites after adding
             setTimeout(() => {
                 checkPrerequisites();
             }, 100);
         }
-        
+
         // Initialize drag listeners
         addDragListeners();
-        
+
         // Initial prerequisite check
         checkPrerequisites();
-        
+
         // Add Enter key support for course addition
-        document.getElementById('courseCode').addEventListener('keypress', function(e) {
+        document.getElementById('courseCode').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 addNewCourse();
             }
         });
-        
+
         // Add some helpful hover effects
         document.addEventListener('DOMContentLoaded', () => {
             // Add a subtle animation when page loads
@@ -931,5 +942,5 @@ text-align: center;
     </script>
 
 </body>
-</html>
 
+</html>
