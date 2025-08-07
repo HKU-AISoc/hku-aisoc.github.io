@@ -20,9 +20,9 @@ function navBarLoad() {
                             <li class="menu-item has-dropdown" aria-haspopup="true">\ 
                                 <a href="#">Freshmen Guide</a>\ 
                                 <ul class="dropdown-menu">\ 
-                                <li class="submenu-item"><a href="./courses.html">Couse Selection</a></li>\ 
-                                <li class="submenu-item"><a href="#12">Applied AI Syllabus</a></li>\ 
-                                <li class="submenu-item"><a href="./course helper.html">Couse Selection Tool </a></li>\ 
+                                <li class="submenu-item"><a href="./courses.html">Course Info</a></li>\ 
+                                <li class="submenu-item"><a href="./courses.html#APAISyll">Applied AI Syllabus</a></li>\ 
+                                <li class="submenu-item"><a href="./course helper.html">Course Selection Tool </a></li>\ 
                                 </ul>\ 
                             </li>\ 
                             <li class="menu-item has-dropdown" aria-haspopup="true">\ 

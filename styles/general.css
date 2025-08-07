@@ -1,3 +1,9 @@
+@media (max-width: 600px) {
+  .navbar{
+    font-size: 8px;
+  }
+}
+
 html {
   height: 100%;
 }
@@ -13,12 +19,26 @@ body {
 }
 
 .container {
-  background-color: #555555;
+  background-image: linear-gradient(90deg, hsl(333, 100%, 20%) 0%, #000000 50%, hsl(219, 100%, 20%) 100%);;
   width: 100%;
   margin: auto !important;
 }
 
+ul{
+  margin: 0;
+}
+
+img{
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  pointer-events: none;
+}
+
 #title {
+  background-color: #555555;
   display: flex;
   align-items: center;
 }
@@ -39,6 +59,7 @@ body {
 
 .navbar {
   background-color: #333;
+  max-width: 100%;
 }
 
 .main-menu {
@@ -113,4 +134,38 @@ a:active {
 
 .content {
   min-height: 960px;
+  margin: 0 40px;
+  padding:20px 40px;
+}
+
+.infoCardContainer{
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  justify-content: center;
+}
+
+.infoCard{
+  background:hsla(168, 100%, 95%,0.3) ;
+  border-left: 4px solid #007dcb;
+  padding: 24px;
+  margin: 24px;
+  border-radius: 8px;
+  width: 35%;
+  min-width: 200px;
+}
+
+.infoCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+@media (min-width: 450px) {
+  .infoCard{
+    min-width: 300px;
+  }
+}
+
+.infoCard h1, .infoCard h2, .infoCard h3, .infoCard h4, .infoCard h5, .infoCard h6, .infoCard p {
+    margin: 10px; 
 }

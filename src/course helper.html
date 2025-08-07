@@ -162,11 +162,15 @@
     }
 
     .course-adder {
-        margin-top: 30px;
         padding: 20px;
         background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
         border-radius: 8px;
         border: 2px solid #2196f3;
+        width: 45%;
+        margin:auto;
+        min-width: 400px;
+        margin-top: 20px;
+        
     }
 
     .course-adder h3 {
@@ -250,7 +254,6 @@
     }
 
     .trash-area {
-        margin-top: 20px;
         padding: 20px;
         background: linear-gradient(135deg, #ffebee 0%, #fce4ec 100%);
         border: 2px dashed #f44336;
@@ -261,6 +264,11 @@
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease;
+        width: 45%;
+        margin: 0 auto;
+        min-width: 400px;
+        margin-top: 20px;
+        
     }
 
     .trash-area.drag-over {
@@ -276,6 +284,15 @@
         align-items: center;
         gap: 10px;
         font-size: 16px;
+    }
+
+    .add-drop-zone{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #courseCode{
+        width: 100px;
     }
 
     .instructions {
@@ -330,6 +347,7 @@
                 <div class="instructions">
                     📚 Drag and drop courses between semesters to plan your degree. Courses start in the pool below -
                     drag them up to schedule them!
+                    <h6>The tool acts as an aid for course selection. Information may sometimes be inaccurate, please refer to official information for the most up to date information</h6>
                 </div>
 
                 <div class="invalid-notice" id="invalidNotice">
@@ -428,35 +446,38 @@
 
                     </div>
                 </div>
-
-                <div class="course-adder">
-                    <h3>➕ Add New Course</h3>
-                    <div class="adder-form">
-                        <div class="form-group">
-                            <label for="courseCode">Course Code</label>
-                            <input type="text" id="courseCode" placeholder="e.g., APAI3010"
-                                style="text-transform: uppercase;">
-                        </div>
-                        <div class="form-group">
-                            <label>Available Semesters</label>
-                            <div class="checkbox-group">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="sem1" value="s1">
-                                    <label for="sem1">Semester 1</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="sem2" value="s2">
-                                    <label for="sem2">Semester 2</label>
+                <div class="add-drop-zone">
+                    <div class="course-adder">
+                        <h3>➕ Add New Course</h3>
+                        <div class="adder-form">
+                            <div class="form-group">
+                                <label for="courseCode">Course Code</label>
+                                <input type="text" id="courseCode" placeholder="e.g., APAI3010"
+                                    style="text-transform: uppercase;">
+                            </div>
+                            <div class="form-group">
+                                <label>Available Semesters</label>
+                                <div class="checkbox-group">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="sem1" value="s1">
+                                        <label for="sem1">Semester 1</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="sem2" value="s2">
+                                        <label for="sem2">Semester 2</label>
+                                    </div>
                                 </div>
                             </div>
+                            <div>
+                                <button class="add-btn" onclick="addNewCourse()">Add Course</button>
+                            </div>
                         </div>
-                        <button class="add-btn" onclick="addNewCourse()">Add Course</button>
                     </div>
-                </div>
 
-                <div class="trash-area" id="trashArea">
-                    <div class="trash-content">
-                        🗑️ Drag courses here to delete them
+                    <div class="trash-area" id="trashArea">
+                        <div class="trash-content">
+                            🗑️ Drag courses here to delete them
+                        </div>
                     </div>
                 </div>
             </div>

@@ -47,6 +47,23 @@
     border-color: #888888;
     border-radius: 25px;
   }
+
+  .ExcoPhoto{
+    height: 250px;
+    
+  }
+
+  .ExcoInfo{
+    margin:20px;
+  }
+  .ExcosDisplay {
+    
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    justify-content: center;
+  }
+
 </style>
 
 
@@ -66,17 +83,33 @@
     <div class="content">
       <h1 style="text-align: center;">What is HKU AI Society?</h1>
 
-      <div style="margin: 40px">
+      <div>
         <h2 id="whoweare"> Who we are </h2>
+        <p>Founded in 2023 by BASc (Applied AI) students, HKU AI Society is a community building the bridge between students, faculty and the world of AI.</p>
+        <div class="infoCardContainer">
+          <div class="infoCard">
+            <h3>We Welcome</h3>
+            <p>We strive to build connections among all stuents and form a community passionate on AI. Students from all majors and backgrounds welcomed!</p>            
+          </div>
+          <div class="infoCard">
+            <h3>We Inspire</h3>
+            <p>We provide events, both casual and technical, in hopes to share idea and insights between every student. </p>            
+          </div>
+          <div class="infoCard">
+            <h3>We Pioneer</h3>
+            <p>Founded in 2023, our society features novel events, and promote novel ideas. We wish to spread our passion of AI to other students! </p>
+          </div>
+          
+        </div>
 
-        <p>The Artificial Intelligence Society at The University of Hong Kong (HKU AI Society) was established in 2023
+        <!-- <p>The Artificial Intelligence Society at The University of Hong Kong (HKU AI Society) was established in 2023
           by enthusiastic BASc (Applied AI) students. We strive to build connections among all students and enhance
           communication between the student body and faculty. We provide diverse learning opportunities while fostering
           engaging discussions and knowledge-sharing sessions on AI topics. Given AI’s significant impact and
           applications across numerous fields, we welcome students from all majors and backgrounds warmly. We also host
           a wide range of inclusive events designed for everyone, regardless of prior knowledge in AI. These include
           career talks, hands-on workshops, social gatherings, and an Annual Dinner. Through these activities, our
-          society aims to inspire interest in AI and empower everyone to explore its possibilities. </p>
+          society aims to inspire interest in AI and empower everyone to explore its possibilities. </p> -->
 
         <h2 id="events"> Events </h2>
 
@@ -88,9 +121,14 @@
 
           <div class="imageHolder">
             <img class="eventImages" src="../images/events_2425_exhi.jpeg">
-            <p class="eventDescription">Exhibition2025</p>
+            <p class="eventDescription">Exhibition 2025</p>
           </div>
 
+          <div class="imageHolder">
+            <img class="eventImages" src="../images/events_2425_anndin1.JPG">
+            <p class="eventDescription">Annual Dinner 2025</p>
+          </div>
+          
           <div class="imageHolder">
             <div>
               <img class="eventImages" src="../images/events_2425_tamee.jpeg">
@@ -100,7 +138,7 @@
           </div>
 
           <div class="imageHolder">
-            <img class="eventImages" src="../images/events_2425_oday.jpeg">
+            <img class="eventImages" src="../images/events_2425_superpass.jpeg">
             <p class="eventDescription">Superpass</p>
           </div>
 
@@ -138,8 +176,53 @@
 
         </div>
         <h2 id="excos"> The Exco Team </h2>
-        <p>Here are us, the team behind this Society, and how to find us</p>
-
+        <p>Here the team behind this Society</p>
+        
+        <div class="ExcosDisplay">
+          
+          <div class="ExcoInfo">
+            <img class="ExcoPhoto" src="../images/events_2425_anndin1.JPG">
+            <h3>Sze Chun Hei (Isaac)</h3>
+            <h4>Chairperson</h4>
+          </div>
+          
+          <div class="ExcoInfo">
+            <img class="ExcoPhoto" src="../images/events_2425_anndin1.JPG">
+            <h3>Huang Yasong (Yancy)</h3>
+            <h4>Internal Vice-chairperson</h4>
+          </div>
+          
+          <div class="ExcoInfo">
+            <img class="ExcoPhoto" src="../images/events_2425_anndin1.JPG">
+            <h3>Cheng Tsik Yui (Rachel)</h3>
+            <h4>External Vice-chairperson</h4>
+          </div>
+          
+          <div class="ExcoInfo">
+            <img class="ExcoPhoto" src="../images/events_2425_anndin1.JPG">
+            <h3>Siu Chun Ting (Nicholas)</h3>
+            <h4>General Secretary and <br>Acting Financial Secretary</h4>
+          </div>
+          
+          <div class="ExcoInfo">
+            <img class="ExcoPhoto" src="../images/events_2425_anndin1.JPG">
+            <h3>Cheng Sheung Yin (Ives)</h3>
+            <h4>Publicity Secretary</h4>
+          </div>
+          
+          <div class="ExcoInfo">
+            <img class="ExcoPhoto" src="../images/events_2425_anndin1.JPG">
+            <h3>Xiong Hanyi (Ellen)</h3>
+            <h4>Media Secretary</h4>
+          </div>
+          
+          <div class="ExcoInfo">
+            <img class="ExcoPhoto" src="../images/events_2425_anndin1.JPG">
+            <h3>Cheng Yu Ting (Marco)</h3>
+            <h4>Academic Secretary</h4>
+          </div>
+          
+        </div>
       </div>
 
     </div>
