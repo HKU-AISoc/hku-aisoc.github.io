@@ -50,7 +50,6 @@
 
   .ExcoPhoto{
     height: 250px;
-    
   }
 
   .ExcoInfo{
@@ -62,6 +61,17 @@
     flex-wrap: wrap;
     width: auto;
     justify-content: center;
+  }
+
+  @media (max-width: 600px) {
+    .eventImages {
+      max-width: 300px;
+      height: auto;
+    }
+    .ExcoPhoto{
+      max-width: 300px;
+      height: auto;
+    }
   }
 
 </style>
