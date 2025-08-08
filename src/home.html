@@ -30,6 +30,21 @@
     border-radius: 5px;
     border-style: solid;
   }
+  .eventsDisplay {
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    justify-content: center;
+  }
+  .imageHolder{
+    text-align: center;
+    margin:20px;
+  }
+
+  .images{
+    width: 70%;
+    height: auto;
+  }
 </style>
 
 
@@ -48,15 +63,24 @@
 
     <div class="content">
       <h1 style="text-align: center;">Welcome to HKU Artificial Intelligence Society!</h1>
-
-      <div class="infoCard" style="width: 80%; margin:auto;">
-        <h3>New to AI? AI enjoyers? Technical enthusiasts?</h3>
-        <p>No worries! We got you all covered! Let's explore the world of AI together!</p>
-        
+      <div class="infoCardContainer">
+        <div class="infoCard" style="width: 80%; margin:auto;">
+          <h3>New to AI? AI enjoyers? Technical enthusiasts?</h3>
+          <p>No worries! We got you all covered! Let's explore the world of AI together!</p>
+        </div>
       </div>
 
-      <h3 style="margin: 40px"> </h3>
+      <h3> Upcoming Events </h3>
 
+      <div class="eventsDisplay">
+
+
+        <div class="imageHolder">
+          <img class="images" src="../images/AISoc Orientation.png">
+          <h4>Orientation Series 2025</h4>
+        </div>
+        
+      </div>
 
     </div>
 
