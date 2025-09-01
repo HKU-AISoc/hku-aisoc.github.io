@@ -8,7 +8,7 @@ function topBarLoad() {
                             <img id="socLogo" src="../images/AIS_logo.png">\
                         </div>\
                         <div id="titleContainer">\
-                            <h1>HKU AI Society</h1>\
+                            <h1 id="socName">HKU AI Society</h1>\
                         </div>'
 }
 
