@@ -561,7 +561,7 @@
             'MATH2014': ['MATH1013'],
             'COMP2113': ['COMP1117'],
             'COMP2120': ['COMP1117'],
-            'STAT2601': ['MATH2014'],
+            
             'STAT2602': ['STAT2601'],
             'COMP2119': ['COMP2113'],
             'STAT3600': ['STAT2602'],
@@ -572,6 +572,9 @@
             // Add more prerequisite rules here as needed
         };
 
+        const corequisites = {
+            'STAT2601': ['MATH2014'],
+        };
         // SEMESTER AVAILABILITY RULES - Easy to edit!
         // Format: 'COURSE_CODE': ['s1', 's2'] or ['s1'] or ['s2']
         // 's1' = Semester 1, 's2' = Semester 2, both = available in both semesters
@@ -715,6 +718,8 @@
                         }
                     }
                 }
+
+                // Check co-requisites here
 
                 if (isInvalid) {
                     courseBlock.classList.add('invalid');
