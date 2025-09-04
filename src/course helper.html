@@ -665,6 +665,7 @@
             document.querySelectorAll('.course-block').forEach(courseBlock => {
                 const courseCode = courseBlock.dataset.course;
                 const coursePrereqs = prerequisites[courseCode];
+                const courseCoreqs = corequisites[courseCode];
                 const courseAvailability = semesterAvailability[courseCode];
 
                 const courseParent = courseBlock.parentNode;
@@ -720,6 +721,38 @@
                 }
 
                 // Check co-requisites here
+                if (courseCoreqs && courseCoreqs.length > 0) {
+                    const courseSemesterIndex = semesterOrder.indexOf(courseSemester);
+
+                    for (const coreq of courseCoreqs) {
+                        const coreqBlock = document.querySelector(`[data-course="${coreq}"]`);
+                        console.log("Hello")
+                        if (!coreqBlock) {
+                            // corequisite not found in the planner
+                            isInvalid = true;
+                            violations.push(`${coreq} is a corequisite of ${courseCode} but is not scheduled.`);
+                            continue;
+                        }
+
+                        const coreqParent = coreqBlock.parentNode;
+                        const coreqSemester = coreqParent.dataset.semester;
+
+                        // If corequisite is in pool, that's invalid
+                        if (coreqSemester === 'pool') {
+                            isInvalid = true;
+                            violations.push(`${coreq} is a corequisite of ${courseCode} but is not scheduled.`);
+                            continue;
+                        }
+
+                        const coreqSemesterIndex = semesterOrder.indexOf(coreqSemester);
+
+                        // If corequisite comes after or same semester as the course, that's invalid
+                        if (coreqSemesterIndex > courseSemesterIndex) {
+                            isInvalid = true;
+                            violations.push(`${coreq} is a corequisite of ${courseCode}.`);
+                        }
+                    }
+                }
 
                 if (isInvalid) {
                     courseBlock.classList.add('invalid');
