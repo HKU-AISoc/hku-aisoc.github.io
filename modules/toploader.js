@@ -26,7 +26,7 @@ function navBarLoad() {
                                 </ul>\ 
                             </li>\ 
                             <li class="menu-item has-dropdown" aria-haspopup="true">\ 
-                                <a href="#">AI Society</a>\ 
+                                <a href="./aisoc.html">AI Society</a>\ 
                                 <ul class="dropdown-menu">\ 
                                 <li class="submenu-item"><a href="./aisoc.html">Who We Are</a></li>\ 
                                 <li class="submenu-item"><a href="./aisoc.html#events">Events</a></li>\ 
@@ -37,6 +37,8 @@ function navBarLoad() {
                             <li class="menu-item"><a href="contact.html">Contact</a></li>\ 
                             <li class="menu-item"><a href="#">More Coming Soon!</a></li>\ 
                             </ul>\ 
+                            <!-- AI Resources in HKU -->
+                            
                         </nav>`
 
 
