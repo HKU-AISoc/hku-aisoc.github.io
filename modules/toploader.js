@@ -16,7 +16,14 @@ function navBarLoad() {
     var navBar = document.getElementsByClassName("navbar")[0]
     navBar.innerHTML = `<nav class="navbar" role="navigation">\ 
                             <ul class="main-menu">\ 
-                            <li class="menu-item"><a href="./home.html">Home</a></li>\ 
+                            <li class="menu-item has-dropdown" aria-haspopup="true">\ 
+                                <a href="./home.html">Home</a>\ 
+                                <ul class="dropdown-menu">\ 
+                                <li class="submenu-item"><a href="./home.html#whoweare">Who We Are</a></li>\ 
+                                <li class="submenu-item"><a href="./home.html#events">Events</a></li>\ 
+                                </ul>\ 
+                            </li>\ 
+                                
                             <li class="menu-item has-dropdown" aria-haspopup="true">\ 
                                 <a href="#">Freshmen Guide</a>\ 
                                 <ul class="dropdown-menu">\ 
@@ -28,9 +35,7 @@ function navBarLoad() {
                             <li class="menu-item has-dropdown" aria-haspopup="true">\ 
                                 <a href="./aisoc.html">AI Society</a>\ 
                                 <ul class="dropdown-menu">\ 
-                                <li class="submenu-item"><a href="./aisoc.html">Who We Are</a></li>\ 
-                                <li class="submenu-item"><a href="./aisoc.html#events">Events</a></li>\ 
-                                <li class="submenu-item"><a href="./aisoc.html#excos">The Exco Team</a></li>\ 
+                                <li class="submenu-item"><a href="./aisoc.html">The Exco Team</a></li>\ 
                                 </ul>\ 
                             </li>\ 
                             <li class="menu-item"><a href="#">FAQs</a></li>\ 
