@@ -38,7 +38,7 @@ function navBarLoad() {
                                 <li class="submenu-item"><a href="./aisoc.html">The Exco Team</a></li>\ 
                                 </ul>\ 
                             </li>\ 
-                            <!-- <li class="menu-item"><a href="#">FAQs</a></li> -->\ 
+                            <li class="menu-item"><a href="./faq.html">FAQs</a></li>\ 
                             <li class="menu-item"><a href="contact.html">Contact</a></li>\ 
                             <li class="menu-item"><a href="#">More Coming Soon!</a></li>\ 
                             </ul>\ 
