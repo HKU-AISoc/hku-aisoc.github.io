@@ -58,6 +58,18 @@ img {
 .navbar {
   background-color: #333;
   max-width: 100%;
+  
+  
+}
+
+.main-menu{
+  flex-wrap: wrap;
+}
+
+.navbar .menu-item {
+
+  display:flex;
+  white-space: nowrap;
 }
 
 .main-menu {
@@ -192,9 +204,7 @@ a:active {
   }
 }
 @media (max-width: 450px) {
-  .navbar {
-    font-size: 8px;
-  }
+  
   #socName {
     font-size: 20px;
   }
