@@ -29,6 +29,7 @@ function navBarLoad() {
                                 <ul class="dropdown-menu">\ 
                                 <li class="submenu-item"><a href="./courses.html">Course Info</a></li>\ 
                                 <li class="submenu-item"><a href="./courses.html#APAISyll">Applied AI Syllabus</a></li>\ 
+                                <li class="submenu-item"><a href="./sourceaccess.html">Academic Source Guide</a></li>\ 
                                 <li class="submenu-item"><a href="./course helper.html">Course Selection Tool </a></li>\ 
                                 </ul>\ 
                             </li>\ 
