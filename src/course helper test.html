@@ -332,6 +332,9 @@
                 <div class="course-block stat" draggable="true" data-course="BASC9001">
                     BASC9001<br>Sem 1
                 </div>
+                <div class="course-block stat" draggable="true" data-course="AILT1001">
+                    AILT1001<br>Sem 1 & 2
+                </div>
                 <div class="course-block math" draggable="true" data-course="CAES1000">
                     CAES1000<br>Sem 1 & 2
                 </div>
@@ -342,9 +345,6 @@
                 </div>
                 <div class="course-block math" draggable="true" data-course="COMP2113">
                     COMP2113<br>Sem 1 & 2
-                </div>
-                <div class="course-block math" draggable="true" data-course="COMP2120">
-                    COMP2120<br>Sem 2 Only
                 </div>
                 <div class="course-block math" draggable="true" data-course="STAT1016">
                     STAT1016<br>Sem 2 Only
@@ -360,16 +360,22 @@
                 <div class="course-block stat" draggable="true" data-course="COMP2119">
                     COMP2119<br>Sem 1 & 2
                 </div>
-                <div class="course-block stat" draggable="true" data-course="DESN9002">
-                    DESN9002<br>Sem 1 Only
+                <div class="course-block advanced" draggable="true" data-course="CAES9821">
+                    CAES9821<br>Sem 1 & 2
+                </div>
+                <div class="course-block stat" draggable="true" data-course="AILT9019">
+                    AILT9019<br>Sem 1 & 2
                 </div>
             </div>
             <div class="drop-zone" data-semester="y2s2">
+                <div class="course-block math" draggable="true" data-course="COMP2120">
+                    COMP2120<br>Sem 2 Only
+                </div>
                 <div class="course-block advanced" draggable="true" data-course="STAT3600">
                     STAT3600<br>Sem 1 & 2
                 </div>
-                <div class="course-block advanced" draggable="true" data-course="CAES9821">
-                    CAES9821<br>Sem 1 & 2
+                <div class="course-block stat" draggable="true" data-course="BASC9002">
+                    BASC9002<br>Sem 2 Only
                 </div>
 
             </div>
@@ -380,10 +386,6 @@
                 <div class="course-block advanced" draggable="true" data-course="MATH3900">
                     MATH3900<br>Sem 1 Only
                 </div>
-                <div class="course-block advanced" draggable="true" data-course="CSCI9001">
-                    CSCI9001<br>Sem 1 & 2
-                </div>
-
             </div>
             <div class="drop-zone" data-semester="y3s2">
                 <div class="course-block advanced" draggable="true" data-course="COMP3340">
@@ -466,14 +468,20 @@
             'STAT2601': ['s1', 's2'],  // Available both semesters
             'STAT2602': ['s1', 's2'],  // Available both semesters
             'COMP2119': ['s1', 's2'],  // Available both semesters
-            'DESN9002': ['s1'],        // Only Semester 1
+            'BASC9002': ['s2'],        // Only Semester 2
             'STAT3600': ['s1', 's2'],  // Available both semesters
             'CAES9821': ['s1', 's2'],  // Available both semesters
+            'AILT1001': ['s1', 's2'],  // Available both semesters
+            'AILT9019': ['s1', 's2'],  // Available both semesters
             'STAT3612': ['s1', 's2'],  // Available both semesters
             'MATH3900': ['s1'],        // Only Semester 1
-            'CSCI9001': ['s1', 's2'],  // Available both semesters
             'COMP3340': ['s2']         // Only Semester 2
             // Add more semester availability rules here as needed
+        };
+
+        const yearAvailability = {
+            'AILT1001': ['y1'],
+            'AILT9019': ['y2']
         };
 
         // Semester order for prerequisite checking
@@ -511,6 +519,11 @@
             return semesterCode.slice(-2); // Gets 's1' or 's2'
         }
 
+        function getYearType(semesterCode) {
+            if (semesterCode === 'pool') return null;
+            return semesterCode.slice(0, 2);
+        }
+
         function getSemesterDisplayName(semesterCode) {
             const semesterNames = {
                 'y1s1': 'Year 1 Semester 1',
@@ -541,6 +554,7 @@
                 const courseCode = courseBlock.dataset.course;
                 const coursePrereqs = prerequisites[courseCode];
                 const courseAvailability = semesterAvailability[courseCode];
+                const courseYearAvailability = yearAvailability[courseCode];
 
                 const courseParent = courseBlock.parentNode;
                 const courseSemester = courseParent.dataset.semester;
@@ -557,6 +571,15 @@
                         isInvalid = true;
                         const availableSems = courseAvailability.map(s => s === 's1' ? 'Semester 1' : 'Semester 2').join(' and ');
                         violations.push(`${courseCode} is only available in ${availableSems}, but is placed in ${getSemesterDisplayName(courseSemester)}.`);
+                    }
+                }
+
+                if (courseYearAvailability) {
+                    const yearType = getYearType(courseSemester);
+                    if (yearType && !courseYearAvailability.includes(yearType)) {
+                        isInvalid = true;
+                        const availableYears = courseYearAvailability.map(y => `Year ${y.slice(1)}`).join(' and ');
+                        violations.push(`${courseCode} can only be taken in ${availableYears}, but is placed in ${getSemesterDisplayName(courseSemester)}.`);
                     }
                 }
 
