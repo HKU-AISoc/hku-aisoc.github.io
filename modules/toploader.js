@@ -20,6 +20,7 @@ function navBarLoad() {
                                 <a href="./home.html">Home</a>\ 
                                 <ul class="dropdown-menu">\ 
                                 <li class="submenu-item"><a href="./home.html#whoweare">Who We Are</a></li>\ 
+                                <li class="submenu-item"><a href="./home.html#awards">Awards</a></li>\ 
                                 <li class="submenu-item"><a href="./home.html#events">Events</a></li>\ 
                                 </ul>\ 
                             </li>\ 
